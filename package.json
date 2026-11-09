@@ -1,0 +1,60 @@
+{
+  "name": "zero-trust-failure-topology",
+  "version": "1.0.0",
+  "description": "Deterministic cascading-failure simulator, structural risk detector, and blast-radius containment engine for multi-agent and distributed service topologies.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "failure-topology": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "scan": "node --import tsx src/cli.ts scan",
+    "serve": "node --import tsx src/cli.ts serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abul-lab/Zero-Trust-Failure-Topology.git"
+  },
+  "keywords": [
+    "zero-trust",
+    "failure-topology",
+    "blast-radius",
+    "cascading-failure",
+    "ai-agents",
+    "distributed-systems",
+    "circuit-breaker",
+    "bulkhead",
+    "resilience-engineering",
+    "audit-chain"
+  ],
+  "author": "abul-lab",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3",
+    "vitest": "^5.1.0"
+  }
+}

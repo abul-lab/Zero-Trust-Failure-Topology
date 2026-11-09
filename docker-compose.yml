@@ -1,0 +1,17 @@
+services:
+  failure-topology:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:4200:4200"
+    environment:
+      TOPOLOGY_HOST: "0.0.0.0"
+      TOPOLOGY_PORT: "4200"
+      TOPOLOGY_OVERLOAD_MULTIPLIER: "4"
+      TOPOLOGY_QUARANTINE_THRESHOLD: "3"
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+
