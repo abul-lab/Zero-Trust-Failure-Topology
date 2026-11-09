@@ -103,15 +103,11 @@ const IncidentResetSchema = z.object({
 });
 
 function verifyApiKeyConstantTime(expected: string, provided: string): boolean {
-  const expectedDigest = crypto
-    .createHash("sha256")
-    .update(expected, "utf8")
-    .digest();
-  const providedDigest = crypto
-    .createHash("sha256")
-    .update(provided, "utf8")
-    .digest();
-  return crypto.timingSafeEqual(expectedDigest, providedDigest);
+  // Compare the raw bytes in constant time. Length is checked first; timingSafeEqual requires equal lengths.
+  const expectedBytes = Buffer.from(expected, "utf8");
+  const providedBytes = Buffer.from(provided, "utf8");
+  if (expectedBytes.length !== providedBytes.length) return false;
+  return crypto.timingSafeEqual(expectedBytes, providedBytes);
 }
 
 function seedBaselineScenarios(engine: FailureTopologyEngine): void {
